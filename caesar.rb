@@ -1,5 +1,6 @@
 # Caesar cipher, shifts the letters of strings
 # Could certainly be redone in a more "functional" way
+# Chad Kreutzer's solution is the most elegant I've seen, not sure if faster
 
 def convert(letter,cipher)
   letter = letter.ord.to_i
