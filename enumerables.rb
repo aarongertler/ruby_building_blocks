@@ -74,7 +74,7 @@ module Enumerable
       i = 0
       total = start
       while i < self.size
-        total = yield(total, self[i])
+        total = yield(total, self[i]) # Acts on whatever block we passed in
         i += 1
       end
     puts total
@@ -124,14 +124,14 @@ puts [1,2,3].my_none? { |num| num > 1 }
 puts "my_count:"
 puts [1,2,3].my_count { |num| num % 2 == 0 }
 puts "my_inject:"
-[1,2,3].my_inject(1) { |product,num| product * num }
-[1,2,3].my_inject { |product,num| product * num }
-[1,2,3].my_inject(:*)
-[1,2,3].my_inject(2,:*)
+[1,2,3].my_inject { |product,num| product * num } # 6
+[1,2,3].my_inject(2) { |product,num| product * num } # 12
+[1,2,3].my_inject(:*) # 6
+[1,2,3].my_inject(2,:*) # 12
 puts "my_map:"
 add_three = Proc.new { |n| n + 3}
-puts [1,2,3].my_map(add_three)
-puts [1,2,3].my_map { |n| n + 3}
+puts [1,2,3].my_map(add_three).to_s # [4,5,6]
+puts ([1,2,3].my_map { |n| n + 3}).to_s # [4,5,6]
 
 
 
