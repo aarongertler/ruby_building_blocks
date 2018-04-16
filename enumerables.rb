@@ -1,4 +1,7 @@
 # Using "yield" to write the "each" method from scratch
+
+# Could use better Ruby syntax by dropping whiles and adding each_do and times_do
+
 module Enumerable
   def my_each
     i = 0
@@ -18,7 +21,7 @@ module Enumerable
     self
   end
 
-  def my_select
+  def my_select # This can be reused in some of the procedures below to save on repetition! Just select i = x for my_all, test that select(x) == [] for my_none, etc.
     i = 0
     new_array = []
     while i < self.size
@@ -64,7 +67,9 @@ module Enumerable
     count
   end
 
-  def my_inject(*args)
+  # Chad Kreutzer uses memo for this: https://github.com/ChadKreutzer/ruby_building_blocks/blob/master/enumerable_methods/enumerable_methods.rb
+
+  def my_inject(*args) # Do something to combine every item in the array
     start = args.empty? ? self.to_a[0] : args[0]
     if start.is_a?(Symbol)
       total = self.my_inject { |total,n| total.method(start).call(n)}
@@ -91,7 +96,7 @@ module Enumerable
   #   new_array
   # end
 
-  def my_map(arg = nil)
+  def my_map(arg = nil) # Do something to each individual item of the array
     new_array = []
     if arg && arg.respond_to?(:call) # React to a passed-in proc
       (self.length).times do |i|
