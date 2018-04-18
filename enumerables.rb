@@ -22,6 +22,7 @@ module Enumerable
   end
 
   def my_select # This can be reused in some of the procedures below to save on repetition! Just select i = x for my_all, test that select(x) == [] for my_none, etc.
+            # See Chad Kreutzer's solution for more in that vein: https://github.com/ChadKreutzer/ruby_building_blocks/blob/master/enumerable_methods/enumerable_methods.rb (don't repeat yourself!)
     i = 0
     new_array = []
     while i < self.size
